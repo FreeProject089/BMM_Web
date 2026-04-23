@@ -193,16 +193,9 @@ function setupEventListeners() {
     document.getElementById('viewLicense').addEventListener('click', showLicense);
     document.getElementById('viewCredits').addEventListener('click', showCredits);
     
-    // Credits page buttons
-    document.getElementById('backToMain').addEventListener('click', () => {
-        document.getElementById('creditsPage').classList.add('hidden');
-        const fromPreLaunch = document.getElementById('creditsPage').dataset.fromPreLaunch === 'true';
-        
-        if (fromPreLaunch) {
-            document.getElementById('preLaunchPage').classList.remove('hidden');
-        } else {
-            document.getElementById('mainPage').classList.remove('hidden');
-        }
+    // Credits modal buttons
+    document.getElementById('creditsClose').addEventListener('click', () => {
+        closeModal('creditsModal');
     });
     
     document.getElementById('creditsLicenseBtn').addEventListener('click', showLicense);
@@ -220,10 +213,7 @@ function setupEventListeners() {
         showMainContent();
     });
     
-    document.getElementById('preLaunchCredits').addEventListener('click', () => {
-        document.getElementById('preLaunchPage').classList.add('hidden');
-        showCredits();
-    });
+    document.getElementById('preLaunchCredits').addEventListener('click', showCredits);
     
     document.getElementById('preLaunchEula').addEventListener('click', showEULA);
     document.getElementById('preLaunchLicense').addEventListener('click', showLicense);
@@ -598,18 +588,8 @@ function setupMainCountdowns() {
     }
 }
 
-// Show credits page
+// Show credits modal
 function showCredits() {
-    const fromPreLaunch = !document.getElementById('preLaunchPage').classList.contains('hidden');
-    
-    if (fromPreLaunch) {
-        document.getElementById('preLaunchPage').classList.add('hidden');
-    } else {
-        document.getElementById('mainPage').classList.add('hidden');
-    }
-    
-    document.getElementById('creditsPage').classList.remove('hidden');
-    
     // Update credits info
     if (config.credits) {
         document.getElementById('creatorName').textContent = config.credits.creator;
@@ -620,8 +600,7 @@ function showCredits() {
         document.getElementById('creditsVersion').textContent = config.nextUpdate.version + '-FAB';
     }
     
-    // Store source page for back button
-    document.getElementById('creditsPage').dataset.fromPreLaunch = fromPreLaunch;
+    openModal('creditsModal');
 }
 
 // Modal helpers
