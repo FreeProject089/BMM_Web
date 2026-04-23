@@ -239,7 +239,7 @@ function setupEventListeners() {
     // Setup credits links
     if (config.links) {
         document.getElementById('githubLink').href = config.links.github;
-        document.getElementById('discordLink').href = config.links.discord || '#';
+        document.getElementById('discordLink').href = config.links.discord;
         document.getElementById('forumsLink').href = config.links.forums;
     }
 }
