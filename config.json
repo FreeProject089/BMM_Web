@@ -4,8 +4,8 @@
   "currentVersionDate": "2026-03-24",
   "nextUpdate": {
     "version": "V0.9.9",
-    "date": "2026-05-01T18:00:00",
-    "timezone": "Europe/Zurich"
+      "date": "2026-05-01T18:00:00",
+      "timezone": "Europe/Zurich"
   },
   "video": {
     "path": "assets/videos/credits_bg.mp4",
@@ -19,7 +19,7 @@
   },
   "links": {
     "github": "https://github.com/FreeProject089/BetterModsManager",
-    "discord": "",
+    "discord": "https://discord.com/invite/CTaaEF9R75",
     "forums": "https://forum.dcs.world/topic/385941-better-modmanager/"
   },
   "files": {
