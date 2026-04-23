@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Better Mod.Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <!-- Video Background -->
+    <video id="bgVideo" autoplay muted loop playsinline>
+        <source src="" type="video/mp4">
+    </video>
+
+    <!-- Language Selection Modal -->
+    <div id="languageModal" class="modal active">
+        <div class="modal-content language-modal">
+            <div class="tasky-container">
+                <img src="assets/Tasky/Tasky_Happy.png" alt="Tasky" class="tasky-logo">
+                <div class="tasky-name">TASKY</div>
+            </div>
+            <h2 id="langTitle">Select Language</h2>
+            <p id="langSubtitle">Choose your language</p>
+            <div class="language-selector">
+                <select id="languageSelect">
+                    <!-- Languages will be populated by JS -->
+                </select>
+            </div>
+            <button id="langOkBtn" class="btn-primary">OK →</button>
+        </div>
+    </div>
+
+    <!-- EULA Modal -->
+    <div id="eulaModal" class="modal">
+        <div class="modal-content eula-modal">
+            <h2 id="eulaTitle">End User License Agreement</h2>
+            <div id="eulaContent" class="markdown-content"></div>
+            <div class="modal-buttons">
+                <button id="eulaAccept" class="btn-primary">I Accept</button>
+                <button id="eulaDecline" class="btn-secondary">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Notes Modal -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content update-modal">
+            <div class="update-modal-header">
+                <h2 id="updateTitle">Release Notes</h2>
+                <button id="updateClose" class="btn-close">×</button>
+            </div>
+            <div class="update-modal-body">
+                <div class="file-explorer">
+                    <div class="file-explorer-header">
+                        <h3>Files</h3>
+                    </div>
+                    <div id="fileExplorer" class="file-tree-container">
+                        <!-- File tree will be populated by JS -->
+                    </div>
+                </div>
+                <div class="markdown-content-wrapper">
+                    <div class="markdown-content" id="updateContent">
+                        <!-- Markdown content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- License Modal -->
+    <div id="licenseModal" class="modal">
+        <div class="modal-content license-modal">
+            <div class="modal-header">
+                <h2>License</h2>
+                <button class="btn-close" onclick="closeModal('licenseModal')">×</button>
+            </div>
+            <div id="licenseContent" class="markdown-content"></div>
+        </div>
+    </div>
+
+    <!-- Pre-launch Countdown Page -->
+    <div id="preLaunchPage" class="page hidden">
+        <div class="countdown-container">
+            <h1 id="preLaunchTitle">Coming Soon</h1>
+            <div id="preLaunchCountdown" class="countdown-large">
+                <div class="countdown-item">
+                    <span id="preDays">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="preHours">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="preMinutes">00</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="preSeconds">00</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+            <div class="prelaunch-buttons">
+                <button id="preLaunchCredits" class="btn-secondary">Credits</button>
+                <button id="preLaunchEula" class="btn-secondary">EULA</button>
+                <button id="preLaunchLicense" class="btn-secondary">License</button>
+                <button id="preLaunchSkip" class="btn-primary">→</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Page -->
+    <div id="mainPage" class="page hidden">
+        <div class="main-container">
+            <div class="logo-section">
+                <img src="assets/BMM 1FT LOGO.png" alt="BMM Logo" class="main-logo">
+                <h1 id="mainTitle">Better Mod.Manager</h1>
+                <p id="currentVersion" class="version-text">V0.9.8FTB</p>
+            </div>
+
+            <div class="countdown-section">
+                <h2 id="nextUpdateLabel">Next Update</h2>
+                <div id="nextUpdateCountdown" class="countdown-large">
+                    <div class="countdown-item">
+                        <span id="nextDays">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="nextHours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="nextMinutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="nextSeconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+                <p id="timeSinceUpdate" class="time-since">Time since current update: <span id="sinceText">--</span></p>
+            </div>
+
+            <div class="download-section">
+                <div class="download-dropdown">
+                    <button id="downloadBtn" class="btn-download">
+                        <span id="downloadText">Download</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div id="downloadMenu" class="dropdown-menu hidden">
+                        <a id="downloadExe" href="#" target="_blank" class="dropdown-item">
+                            <span class="icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                </svg>
+                            </span>
+                            <span id="exeText">EXE Installer</span>
+                        </a>
+                        <a id="downloadMsi" href="#" target="_blank" class="dropdown-item">
+                            <span class="icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                </svg>
+                            </span>
+                            <span id="msiText">MSI Installer</span>
+                        </a>
+                        <a id="downloadSource" href="#" target="_blank" class="dropdown-item">
+                            <span class="icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </span>
+                            <span id="sourceText">Source Code</span>
+                        </a>
+                    </div>
+                </div>
+                <a id="devVersionBtn" href="#" target="_blank" class="btn-dev">
+                    <span id="devText">Dev Version</span>
+                </a>
+            </div>
+
+            <div class="info-buttons">
+                <div class="language-dropdown">
+                    <button id="languageBtn" class="btn-info">
+                        <span id="currentLangText">🌐 English</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div id="languageMenu" class="dropdown-menu hidden">
+                        <a href="#" class="dropdown-item" data-lang="en">
+                            <span class="lang-icon">🇬🇧</span>
+                            <span>English</span>
+                        </a>
+                        <a href="#" class="dropdown-item" data-lang="fr">
+                            <span class="lang-icon">🇫🇷</span>
+                            <span>Français</span>
+                        </a>
+                    </div>
+                </div>
+                <button id="viewUpdateNotes" class="btn-info">
+                    <span id="viewUpdateText">View Update Notes</span>
+                </button>
+                <button id="viewEula" class="btn-info">
+                    <span id="viewEulaText">View EULA</span>
+                </button>
+                <button id="viewLicense" class="btn-info">
+                    <span id="viewLicenseText">View License</span>
+                </button>
+                <button id="viewCredits" class="btn-info">
+                    <span id="viewCreditsText">Credits</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credits Page -->
+    <div id="creditsPage" class="page hidden">
+        <div class="credits-container">
+            <div class="credits-content">
+                <img src="assets/BMM 1FT LOGO.png" alt="BMM Logo" class="credits-logo">
+                <h1 id="creditsTitle">Better Mod.Manager</h1>
+                <p id="creditsVersion" class="credits-version">V0.9.9-FAB</p>
+                
+                <div class="credits-section">
+                    <img src="assets/FP_pfp.webp" alt="FreeProject089" class="creator-pfp">
+                    <h3 id="authorLabel">Author</h3>
+                    <p id="creatorName">FreeProject089</p>
+                    <p id="creatorRole">Creator & Developer</p>
+                </div>
+
+                <div class="credits-section">
+                    <h3 id="linksLabel">Links & Community</h3>
+                    <div class="links-list">
+                        <a id="githubLink" href="#" target="_blank" class="link-item">
+                            <span class="link-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <span id="githubText">GitHub Repository</span>
+                                <small id="githubDesc">Source code & contributions</small>
+                            </div>
+                        </a>
+                        <a id="discordLink" href="#" target="_blank" class="link-item">
+                            <span class="link-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <span id="discordText">Join Discord</span>
+                                <small id="discordDesc">Help & updates</small>
+                            </div>
+                        </a>
+                        <a id="forumsLink" href="#" target="_blank" class="link-item">
+                            <span class="link-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <span id="forumsText">Eagle Dynamics Forums</span>
+                                <small id="forumsDesc">DCS World community & modding resources</small>
+                            </div>
+                        </a>
+                        <button id="creditsLicenseBtn" class="link-item button-link">
+                            <span class="link-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <span id="creditsLicenseText">License</span>
+                                <small id="creditsLicenseDesc">GPL 3.0 - Click to read</small>
+                            </div>
+                        </button>
+                        <button id="creditsEulaBtn" class="link-item button-link">
+                            <span class="link-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                                </svg>
+                            </span>
+                            <div>
+                                <span id="creditsEulaText">Terms of Use (EULA)</span>
+                                <small id="creditsEulaDesc">Legal terms - Click to read</small>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="credits-footer">
+                    <button id="backToMain" class="btn-secondary">← Back</button>
+                    <p id="copyrightText">© 2026 BETTER MOD.MANAGER. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

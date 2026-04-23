@@ -1,0 +1,43 @@
+{
+  "launchDate": "2026-05-01T18:00:00",
+  "currentVersion": "V0.9.8FTB",
+  "currentVersionDate": "2026-03-24",
+  "nextUpdate": {
+    "version": "V0.9.9",
+    "date": "2026-05-01T18:00:00",
+    "timezone": "Europe/Zurich"
+  },
+  "video": {
+    "path": "assets/videos/credits_bg.mp4",
+    "recommendedResolution": "1920x1080"
+  },
+  "downloads": {
+    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.8_x64-setup.exe",
+    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.8_x64_en-US.msi",
+    "sourceCode": "https://github.com/FreeProject089/BetterModsManager/archive/refs/tags/LR.zip",
+    "devVersion": "https://github.com/FreeProject089/BetterModsManager/tree/Tdev"
+  },
+  "links": {
+    "github": "https://github.com/FreeProject089/BetterModsManager",
+    "discord": "",
+    "forums": "https://forum.dcs.world/topic/385941-better-modmanager/"
+  },
+  "files": {
+    "eula": {
+      "en": "EULA_EN.md",
+      "fr": "EULA_FR.md"
+    },
+    "license": "LICENSE.md",
+    "updateNotes": "Update",
+    "latestUpdate": {
+      "en": "Update/changelog_v0.9.9_EN.md",
+      "fr": "Update/changelog_v0.9.9_FR.md"
+    }
+  },
+  "credits": {
+    "creator": "FreeProject089",
+    "role": "Créateur & Développeur",
+    "poweredBy": "Rust & Tauri v1",
+    "year": "2026"
+  }
+}

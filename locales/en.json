@@ -1,0 +1,54 @@
+{
+  "code": "en",
+  "suffix": "_EN",
+  "name": "English",
+  "flag": "en.svg",
+  "languageSelection": {
+    "title": "Select Language",
+    "subtitle": "Choose your language",
+    "button": "OK →"
+  },
+  "eula": {
+    "title": "End User License Agreement",
+    "accept": "I Accept",
+    "decline": "Decline"
+  },
+  "updateNotes": {
+    "title": "Release Notes",
+    "close": "Close"
+  },
+  "main": {
+    "title": "Better Mod.Manager",
+    "currentVersion": "Current Version",
+    "nextUpdate": "Next Update",
+    "nextUpdateComing": "Next update coming in",
+    "timeSinceUpdate": "Time since current update",
+    "download": "Download",
+    "devVersion": "Dev Version",
+    "exe": "EXE Installer",
+    "msi": "MSI Installer",
+    "sourceCode": "Source Code",
+    "viewUpdateNotes": "View Update Notes",
+    "viewEula": "View EULA",
+    "viewLicense": "View License",
+    "credits": "Credits"
+  },
+  "credits": {
+    "title": "Better Mod.Manager",
+    "author": "Author",
+    "creator": "Creator & Developer",
+    "poweredBy": "Powered by",
+    "links": "Links & Community",
+    "github": "GitHub Repository",
+    "githubDesc": "Source code & contributions",
+    "discord": "Join Discord",
+    "discordDesc": "Help & updates",
+    "forums": "Eagle Dynamics Forums",
+    "forumsDesc": "DCS World community & modding resources",
+    "license": "License",
+    "licenseDesc": "GPL 3.0 - Click to read",
+    "eula": "Terms of Use (EULA)",
+    "eulaDesc": "Legal terms - Click to read",
+    "copyright": "© {year} BETTER MOD.MANAGER. ALL RIGHTS RESERVED."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "code": "fr",
+  "suffix": "_FR",
+  "name": "Français",
+  "flag": "fr.svg",
+  "languageSelection": {
+    "title": "Sélectionner la langue",
+    "subtitle": "Choisissez votre langue",
+    "button": "OK →"
+  },
+  "eula": {
+    "title": "Contrat de Licence Utilisateur Final",
+    "accept": "J'accepte",
+    "decline": "Refuser"
+  },
+  "updateNotes": {
+    "title": "Notes de version",
+    "close": "Fermer"
+  },
+  "main": {
+    "title": "Better Mod.Manager",
+    "currentVersion": "Version actuelle",
+    "nextUpdate": "Prochaine mise à jour",
+    "nextUpdateComing": "Prochaine mise à jour prévue pour",
+    "timeSinceUpdate": "Temps écoulé depuis la mise à jour actuelle",
+    "download": "Télécharger",
+    "devVersion": "Version Dev",
+    "exe": "Installateur EXE",
+    "msi": "Installateur MSI",
+    "sourceCode": "Code source",
+    "viewUpdateNotes": "Voir les notes de mise à jour",
+    "viewEula": "Voir le CLUF",
+    "viewLicense": "Voir la licence",
+    "credits": "Crédits"
+  },
+  "credits": {
+    "title": "Better Mod.Manager",
+    "author": "Auteur",
+    "creator": "Créateur & Développeur",
+    "poweredBy": "Propulsé par",
+    "links": "Liens & Communauté",
+    "github": "Dépôt GitHub",
+    "githubDesc": "Code source & contributions",
+    "discord": "Rejoindre le Discord",
+    "discordDesc": "Aide & mises à jour",
+    "forums": "Forums Eagle Dynamics",
+    "forumsDesc": "Communauté DCS World & ressources de modding",
+    "license": "Licence",
+    "licenseDesc": "GPL 3.0 - Cliquez pour lire",
+    "eula": "Conditions d'Utilisation (CLUF)",
+    "eulaDesc": "Termes légaux - Cliquez pour lire",
+    "copyright": "© {year} BETTER MOD.MANAGER. TOUS DROITS RÉSERVÉS."
+  }
+}
