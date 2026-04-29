@@ -131,6 +131,8 @@ function updateLanguageUI() {
     document.getElementById('discordDesc').textContent = lang.credits.discordDesc;
     document.getElementById('forumsText').textContent = lang.credits.forums;
     document.getElementById('forumsDesc').textContent = lang.credits.forumsDesc;
+    document.getElementById('redditText').textContent = lang.credits.reddit;
+    document.getElementById('redditDesc').textContent = lang.credits.redditDesc;
     document.getElementById('creditsLicenseText').textContent = lang.credits.license;
     document.getElementById('creditsLicenseDesc').textContent = lang.credits.licenseDesc;
     document.getElementById('creditsEulaText').textContent = lang.credits.eula;
@@ -259,6 +261,7 @@ function setupEventListeners() {
         document.getElementById('githubLink').href = config.links.github;
         document.getElementById('discordLink').href = config.links.discord;
         document.getElementById('forumsLink').href = config.links.forums;
+        document.getElementById('redditLink').href = config.links.reddit;
     }
 }
 
