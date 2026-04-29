@@ -4,8 +4,8 @@
   "currentVersionDate": "2026-03-24",
   "nextUpdate": {
     "version": "V0.9.9",
-      "date": "2026-05-01T18:00:00",
-      "timezone": "Europe/Zurich"
+    "date": "2026-05-01T18:00:00",
+    "timezone": "Europe/Zurich"
   },
   "video": {
     "path": "assets/videos/credits_bg.mp4",
@@ -33,6 +33,11 @@
       "en": "Update/changelog_v0.9.9_EN.md",
       "fr": "Update/changelog_v0.9.9_FR.md"
     }
+  },
+  "progressSource": {
+    "type": "url",
+    "url": "https://raw.githubusercontent.com/FreeProject089/BetterModsManager/refs/heads/Tdev/progress.json",
+    "path": "assets/progress.json"
   },
   "credits": {
     "creator": "FreeProject089",

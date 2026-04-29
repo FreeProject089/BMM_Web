@@ -4,6 +4,7 @@ let currentLanguage = 'en';
 let languageData = {};
 let updateFiles = {};
 let preLaunchInterval = null;
+const PROGRESS_URL = 'https://raw.githubusercontent.com/FreeProject089/BetterModsManager/refs/heads/Tdev/progress.json';
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -87,7 +88,14 @@ function updateLanguageUI() {
     
     // Main page
     document.getElementById('mainTitle').textContent = lang.main.title;
-    document.getElementById('nextUpdateLabel').textContent = lang.main.nextUpdate;
+    
+    if (config.nextUpdate && config.nextUpdate.version) {
+        document.getElementById('nextUpdateLabel').textContent = lang.main.nextUpdateWithVersion.replace('{version}', config.nextUpdate.version);
+        document.getElementById('preLaunchTitle').textContent = `Coming Soon: ${config.nextUpdate.version}`;
+    } else {
+        document.getElementById('nextUpdateLabel').textContent = lang.main.nextUpdate;
+    }
+
     document.getElementById('downloadText').textContent = lang.main.download;
     document.getElementById('exeText').textContent = lang.main.exe;
     document.getElementById('msiText').textContent = lang.main.msi;
@@ -96,7 +104,21 @@ function updateLanguageUI() {
     document.getElementById('viewUpdateText').textContent = lang.main.viewUpdateNotes;
     document.getElementById('viewEulaText').textContent = lang.main.viewEula;
     document.getElementById('viewLicenseText').textContent = lang.main.viewLicense;
-    document.getElementById('viewCreditsText').textContent = lang.main.credits;
+    document.getElementById('viewCreditsText').textContent = lang.main.viewCredits;
+    document.getElementById('viewProgressText').textContent = lang.main.viewProgress;
+    
+    // Progress Modal (if open)
+    const progressModal = document.getElementById('progressModal');
+    if (progressModal.classList.contains('active')) {
+        // We don't have the data here easily without re-fetching, 
+        // but we can update the labels at least
+        document.getElementById('progressTitle').textContent = lang.progress.title;
+        document.getElementById('progressMainTitle').textContent = lang.progress.title;
+        document.getElementById('artLabel').textContent = lang.progress.art;
+        document.getElementById('codeLabel').textContent = lang.progress.code;
+        document.getElementById('completionLabel').textContent = lang.progress.completion;
+        document.getElementById('progressNote').textContent = lang.progress.note;
+    }
     
     // Credits page
     document.getElementById('creditsTitle').textContent = lang.credits.title;
@@ -192,6 +214,12 @@ function setupEventListeners() {
     document.getElementById('viewEula').addEventListener('click', showEULA);
     document.getElementById('viewLicense').addEventListener('click', showLicense);
     document.getElementById('viewCredits').addEventListener('click', showCredits);
+    document.getElementById('viewProgress').addEventListener('click', showProgress);
+    
+    // Progress modal buttons
+    document.getElementById('progressClose').addEventListener('click', () => {
+        closeModal('progressModal');
+    });
     
     // Credits modal buttons
     document.getElementById('creditsClose').addEventListener('click', () => {
@@ -533,17 +561,21 @@ function showMainContent() {
 function setupMainCountdowns() {
     if (!config.nextUpdate) return;
     
-    const nextUpdateDate = new Date(config.nextUpdate.date);
     const currentVersionDate = config.currentVersionDate ? new Date(config.currentVersionDate) : null;
-    
-    // Check if we only have a year
-    if (config.nextUpdate.date.match(/^\d{4}$/)) {
+
+    // Check if we only have a year or TBA
+    if (config.nextUpdate.date === "TBA") {
+        document.getElementById('nextUpdateCountdown').innerHTML = 
+            `<div style="font-size: 2.5rem; color: var(--primary-color); font-weight: bold; letter-spacing: 2px;">${languageData[currentLanguage].main.tba}</div>`;
+    } else if (config.nextUpdate.date.match(/^\d{4}$/)) {
         // Only year provided
         const year = parseInt(config.nextUpdate.date);
         document.getElementById('nextUpdateCountdown').innerHTML = 
             `<div style="font-size: 2rem; color: var(--primary-color);">${languageData[currentLanguage].main.nextUpdateComing} ${year}</div>`;
     } else {
         // Full date provided
+        const nextUpdateDate = new Date(config.nextUpdate.date);
+        
         function updateNextCountdown() {
             const now = new Date();
             const diff = nextUpdateDate - now;
@@ -635,3 +667,101 @@ document.querySelectorAll('.modal').forEach(modal => {
         }
     });
 });
+
+// Resolve progress source from config
+function resolveProgressSource() {
+    const src = config.progressSource;
+    if (!src) return PROGRESS_URL; // fallback to legacy constant
+    if (src.type === 'url' && src.url) return src.url;
+    if (src.type === 'path' && src.path) return src.path;
+    // auto-detect: if value starts with http, treat as url
+    if (src.url && src.url.startsWith('http')) return src.url;
+    if (src.path) return src.path;
+    return PROGRESS_URL;
+}
+
+// Show progress tracker modal
+async function showProgress() {
+    try {
+        const source = resolveProgressSource();
+        const response = await fetch(source);
+        const data = await response.json();
+        renderProgress(data);
+        openModal('progressModal');
+    } catch (error) {
+        console.error('Error loading progress:', error);
+        alert('Error loading progress data.');
+    }
+}
+
+// Render progress data
+function renderProgress(data) {
+    const lang = languageData[currentLanguage];
+    const progressLang = lang.progress;
+    
+    // Update labels
+    document.getElementById('progressTitle').textContent = progressLang.title;
+    document.getElementById('progressMainTitle').textContent = progressLang.title;
+    document.getElementById('progressLastUpdate').textContent = progressLang.updated.replace('{date}', data.lastUpdate[currentLanguage] || data.lastUpdate.en);
+    document.getElementById('artLabel').textContent = progressLang.art;
+    document.getElementById('codeLabel').textContent = progressLang.code;
+    document.getElementById('completionLabel').textContent = progressLang.completion;
+    document.getElementById('progressNote').textContent = progressLang.note;
+    
+    // Calculate completion (average)
+    const completion = Math.round((data.art + data.code) / 2);
+    
+    // Update circles
+    updateCircle('art', data.art);
+    updateCircle('code', data.code);
+    updateCircle('completion', completion);
+    
+    // Render categories
+    const categoriesContainer = document.getElementById('progressCategories');
+    categoriesContainer.innerHTML = '';
+    
+    data.categories.forEach(category => {
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        
+        const catName = category.name[currentLanguage] || category.name.en;
+        card.innerHTML = `<h3>${catName}</h3>`;
+        
+        const itemsContainer = document.createElement('div');
+        itemsContainer.className = 'category-items';
+        
+        category.items.forEach(item => {
+            const itemRow = document.createElement('div');
+            itemRow.className = 'item-row';
+            
+            const itemLabel = item.label[currentLanguage] || item.label.en;
+            const statusText = progressLang.status[item.status] || item.status.toUpperCase();
+            
+            itemRow.innerHTML = `
+                <div class="item-header">
+                    <span class="status-badge ${item.status}">${statusText}</span>
+                    <span class="item-label">${itemLabel}</span>
+                </div>
+                <div class="item-progress-bar">
+                    <div class="item-progress-fill ${item.status}" style="width: ${item.percent}%"></div>
+                </div>
+            `;
+            itemsContainer.appendChild(itemRow);
+        });
+        
+        card.appendChild(itemsContainer);
+        categoriesContainer.appendChild(card);
+    });
+}
+
+function updateCircle(id, percent) {
+    const circle = document.getElementById(`${id}Circle`);
+    const text = document.getElementById(`${id}Percent`);
+    
+    // Circumference is 2 * PI * 45 ≈ 282.74
+    const circumference = 2 * Math.PI * 45;
+    const offset = circumference - (percent / 100) * circumference;
+    
+    circle.style.strokeDashoffset = offset;
+    text.textContent = `${percent}%`;
+}

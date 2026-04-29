@@ -21,7 +21,9 @@
     "title": "Better Mod.Manager",
     "currentVersion": "Version actuelle",
     "nextUpdate": "Prochaine mise à jour",
+    "nextUpdateWithVersion": "Prochaine mise à jour : {version}",
     "nextUpdateComing": "Prochaine mise à jour prévue pour",
+    "tba": "À venir",
     "timeSinceUpdate": "Temps écoulé depuis la mise à jour actuelle",
     "download": "Télécharger",
     "devVersion": "Version Dev",
@@ -31,7 +33,21 @@
     "viewUpdateNotes": "Voir les notes de mise à jour",
     "viewEula": "Voir le CLUF",
     "viewLicense": "Voir la licence",
-    "credits": "Crédits"
+    "viewCredits": "Crédits",
+    "viewProgress": "Avancement"
+  },
+  "progress": {
+    "title": "SUIVI D'AVANCEMENT",
+    "updated": "Mis à jour : {date}",
+    "art": "ART*",
+    "code": "CODE*",
+    "completion": "AVANCEMENT TOTAL*",
+    "note": "*Veuillez noter que ces chiffres (sujets à changement) sont des estimations et appliquent un poids égal à l'art et au code.",
+    "status": {
+      "complete": "TERMINÉ",
+      "progress": "EN COURS",
+      "testing": "TESTS"
+    }
   },
   "credits": {
     "title": "Better Mod.Manager",

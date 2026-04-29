@@ -209,6 +209,9 @@
                 <button id="viewCredits" class="btn-info">
                     <span id="viewCreditsText">Credits</span>
                 </button>
+                <button id="viewProgress" class="btn-info">
+                    <span id="viewProgressText">Progress</span>
+                </button>
             </div>
         </div>
     </div>
@@ -294,6 +297,67 @@
 
                 <div class="credits-footer">
                     <p id="copyrightText">© 2026 BETTER MOD.MANAGER. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal">
+        <div class="modal-content progress-modal">
+            <div class="modal-header">
+                <h2 id="progressTitle">Progress Tracker</h2>
+                <button id="progressClose" class="btn-close">×</button>
+            </div>
+            <div class="progress-body">
+                <div class="progress-content-header">
+                    <h1 id="progressMainTitle">PROGRESS TRACKER</h1>
+                    <p id="progressLastUpdate">Updated: ---</p>
+                </div>
+                
+                <div class="progress-stats">
+                    <div class="stat-circle-container">
+                        <div class="stat-circle art">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="fg" cx="50" cy="50" r="45" id="artCircle"></circle>
+                            </svg>
+                            <span class="stat-percent" id="artPercent">0%</span>
+                        </div>
+                        <span class="stat-label" id="artLabel">ART*</span>
+                    </div>
+                    
+                    <div class="stat-operator">+</div>
+                    
+                    <div class="stat-circle-container">
+                        <div class="stat-circle code">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="fg" cx="50" cy="50" r="45" id="codeCircle"></circle>
+                            </svg>
+                            <span class="stat-percent" id="codePercent">0%</span>
+                        </div>
+                        <span class="stat-label" id="codeLabel">CODE*</span>
+                    </div>
+                    
+                    <div class="stat-operator">=</div>
+                    
+                    <div class="stat-circle-container">
+                        <div class="stat-circle completion">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="45"></circle>
+                                <circle class="fg" cx="50" cy="50" r="45" id="completionCircle"></circle>
+                            </svg>
+                            <span class="stat-percent" id="completionPercent">0%</span>
+                        </div>
+                        <span class="stat-label" id="completionLabel">COMPLETION*</span>
+                    </div>
+                </div>
+                
+                <p class="progress-note" id="progressNote">*Please note these numbers (Subject to Change) are both estimates and apply equal weight to art and code.</p>
+                
+                <div id="progressCategories" class="progress-categories">
+                    <!-- Categories will be populated by JS -->
                 </div>
             </div>
         </div>
