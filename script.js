@@ -10,8 +10,19 @@ const PROGRESS_URL = 'https://raw.githubusercontent.com/FreeProject089/BetterMod
 document.addEventListener('DOMContentLoaded', async () => {
     await loadConfig();
     await loadLanguages();
-    setupLanguageSelection();
+    const skipped = setupLanguageSelection();
     setupEventListeners();
+    
+    if (skipped) {
+        closeModal('languageModal');
+        const eulaAccepted = localStorage.getItem('eulaAccepted') === 'true';
+        if (eulaAccepted) {
+            showUpdateNotes();
+        } else {
+            showEULA();
+        }
+    }
+    
     checkLaunchDate();
     setupVideoBackground();
     setupHistoryNavigation();
@@ -46,8 +57,10 @@ function setupLanguageSelection() {
     
     // Check for saved language preference
     const savedLang = localStorage.getItem('preferredLanguage');
+    let skipLanguageModal = false;
     if (savedLang && languageData[savedLang]) {
         currentLanguage = savedLang;
+        skipLanguageModal = true;
     }
     
     // Populate language options
@@ -61,6 +74,8 @@ function setupLanguageSelection() {
     
     // Update UI with current language
     updateLanguageUI();
+
+    return skipLanguageModal;
 }
 
 // Update UI with selected language
@@ -151,11 +166,17 @@ function setupEventListeners() {
     
     document.getElementById('langOkBtn').addEventListener('click', async () => {
         closeModal('languageModal');
-        await showEULA();
+        const eulaAccepted = localStorage.getItem('eulaAccepted') === 'true';
+        if (eulaAccepted) {
+            showUpdateNotes();
+        } else {
+            showEULA();
+        }
     });
     
     // EULA
     document.getElementById('eulaAccept').addEventListener('click', () => {
+        localStorage.setItem('eulaAccepted', 'true');
         closeModal('eulaModal');
         showUpdateNotes();
     });
