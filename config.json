@@ -1,10 +1,10 @@
 {
   "launchDate": "2026-05-01T18:00:00",
-  "currentVersion": "V0.9.8FTB",
+  "currentVersion": "V0.9.9RT1",
   "currentVersionDate": "2026-03-24",
   "nextUpdate": {
-    "version": "V0.9.9",
-    "date": "2026-05-01T18:00:00",
+    "version": "V1.0",
+    "date": "TBA",
     "timezone": "Europe/Zurich"
   },
   "video": {
@@ -12,8 +12,8 @@
     "recommendedResolution": "1920x1080"
   },
   "downloads": {
-    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.8_x64-setup.exe",
-    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.8_x64_en-US.msi",
+    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.9_x64-setup.exe",
+    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.9_x64_en-US.msi",
     "sourceCode": "https://github.com/FreeProject089/BetterModsManager/archive/refs/tags/LR.zip",
     "devVersion": "https://github.com/FreeProject089/BetterModsManager/tree/Tdev"
   },
