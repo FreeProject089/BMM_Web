@@ -12,9 +12,9 @@
     "recommendedResolution": "1920x1080"
   },
   "downloads": {
-    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.9_x64-setup.exe",
-    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/LR/Better.Mod.Manager_0.9.9_x64_en-US.msi",
-    "sourceCode": "https://github.com/FreeProject089/BetterModsManager/archive/refs/tags/LR.zip",
+    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.9/Better.Mod.Manager_0.9.9_x64-setup.exe",
+    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.9/Better.Mod.Manager_0.9.9_x64_en-US.msi",
+    "sourceCode": "https://github.com/FreeProject089/BetterModsManager/archive/refs/tags/V0.9.9.zip",
     "devVersion": "https://github.com/FreeProject089/BetterModsManager/tree/Tdev"
   },
   "links": {
