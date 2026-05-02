@@ -12,9 +12,9 @@
     "recommendedResolution": "1920x1080"
   },
   "downloads": {
-    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.10/Better.Mod.Manager_0.9.10_x64-setup.exe",
-    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.10/Better.Mod.Manager_0.9.10_x64_en-US.msi",
-    "sourceCode": "https://github.com/FreeProject089/BetterModsManager/archive/refs/tags/V0.9.10.zip",
+    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/v0.9.11/Better.Mod.Manager_0.9.11_x64-setup.exe",
+    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/v0.9.11/Better.Mod.Manager_0.9.11_x64_en-US.msi",
+    "sourceCode": "https://github.com/FreeProject089/BetterModsManager/releases/tag/v0.9.11",
     "devVersion": "https://github.com/FreeProject089/BetterModsManager/tree/Tdev"
   },
   "links": {
@@ -31,8 +31,8 @@
     "license": "LICENSE.md",
     "updateNotes": "Update",
     "latestUpdate": {
-      "en": "Update/RELEASE_NOTES_0.9.10_EN.md",
-      "fr": "Update/RELEASE_NOTES_0.9.10_FR.md"
+      "en": "Update/RELEASE_NOTES_0.9.11_EN.md",
+      "fr": "Update/RELEASE_NOTES_0.9.11_FR.md"
     }
   },
   "progressSource": {
