@@ -1,7 +1,7 @@
 {
   "launchDate": "2026-05-01T18:00:00",
-  "currentVersion": "V0.9.9RT1",
-  "currentVersionDate": "2026-05-01",
+  "currentVersion": "V0.9.10",
+  "currentVersionDate": "2026-05-02",
   "nextUpdate": {
     "version": "V1.0",
     "date": "TBA",
@@ -12,9 +12,9 @@
     "recommendedResolution": "1920x1080"
   },
   "downloads": {
-    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.9/Better.Mod.Manager_0.9.9_x64-setup.exe",
-    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.9/Better.Mod.Manager_0.9.9_x64_en-US.msi",
-    "sourceCode": "https://github.com/FreeProject089/BetterModsManager/archive/refs/tags/V0.9.9.zip",
+    "exe": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.10/Better.Mod.Manager_0.9.10_x64-setup.exe",
+    "msi": "https://github.com/FreeProject089/BetterModsManager/releases/download/V0.9.10/Better.Mod.Manager_0.9.10_x64_en-US.msi",
+    "sourceCode": "https://github.com/FreeProject089/BetterModsManager/archive/refs/tags/V0.9.10.zip",
     "devVersion": "https://github.com/FreeProject089/BetterModsManager/tree/Tdev"
   },
   "links": {
@@ -31,8 +31,8 @@
     "license": "LICENSE.md",
     "updateNotes": "Update",
     "latestUpdate": {
-      "en": "Update/changelog_v0.9.9_EN.md",
-      "fr": "Update/changelog_v0.9.9_FR.md"
+      "en": "Update/RELEASE_NOTES_0.9.10_EN.md",
+      "fr": "Update/RELEASE_NOTES_0.9.10_FR.md"
     }
   },
   "progressSource": {
